@@ -1,8 +1,36 @@
 # Accounting Ledger Automation Pipeline
 
+![Python](https://img.shields.io/badge/Python-3.11+-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red)
+![Status](https://img.shields.io/badge/Status-Prototype%20v2.0-green)
+
+## Live Demo
+
+🚀 Try the application here:
+
+https://kynguyen-ledger-automation.streamlit.app/
+
 A personal portfolio project that explores how Python can transform raw accounting ledger exports into structured, review-ready, audit-friendly datasets.
 
 Created by **Nguyen Du My Ky**
+
+---
+
+## Why I Built This Project
+
+I built this as a personal learning project to practice Python, data cleaning, automation, and workflow design through a realistic accounting workflow.
+
+It was inspired by repetitive accounting-related tasks such as:
+
+- Cleaning ledger exports
+- Matching vendors
+- Identifying payroll employees
+- Looking up tax IDs and addresses
+- Preparing review workbooks
+
+The goal is to learn how automation can support real business workflows while still keeping human review and approval in control. 
+
+Rather than building another tutorial project, I wanted to solve a real workflow problem and learn how automation can support day-to-day business operations.
 
 ---
 
@@ -21,22 +49,6 @@ Target users include:
 - Finance operations teams
 - Audit support teams
 - Business and data analysts supporting accounting workflows
-
----
-
-## Why I Built This Project
-
-I built this as a personal learning project to practice Python, data cleaning, automation, and workflow design through a realistic accounting workflow.
-
-It was inspired by repetitive accounting-related tasks such as:
-
-- Cleaning ledger exports
-- Matching vendors
-- Identifying payroll employees
-- Looking up tax IDs and addresses
-- Preparing review workbooks
-
-The goal is to learn how automation can support real business workflows while still keeping human review and approval in control.
 
 ---
 
@@ -242,36 +254,50 @@ No artificial performance statistics are claimed. Results are based on implement
 
 ## Screenshots
 
-Screenshots will be added in a future portfolio update.
+### Streamlit Home
 
-Planned screenshots:
+![Streamlit Home](Screenshots/streamlit-home.jpg)
 
-- `Screenshots/streamlit-home.png` - Streamlit Home
-- `Screenshots/vendor-match-review.png` - Vendor Match Review
-- `Screenshots/employee-extraction-review.png` - Employee Extraction Review
-- `Screenshots/final-workbook.png` - Final Workbook
+### Formatted Ledger
 
-TODO:
+![Formatted Ledger](Screenshots/formatted-ledger.png)
 
-- Add Streamlit UI screenshot
-- Add example review workbook screenshots using fictional data
-- Add final workbook screenshot using fictional data
+### Vendor Match Review
+
+![Vendor Match Review](Screenshots/vendor-match-review.png)
+
+### Employee Extraction Review
+
+![Employee Extraction Review](Screenshots/employee-extraction-review.png)
+
+### Final Workbook
+![Final Workbook](Screenshots/final-workbook.png)
 
 ---
 
 ## Demo
 
-### Current Demo
+### Live Demo
+Streamlit Cloud Application
+Public demo environment using fictional sample data
+End-to-end workflow demonstration:
+Ledger Flattening
+Vendor Match Review
+Employee Extraction Review
+Approved Mapping
+Final Workbook Generation
 
-- Local Streamlit application
-- Local CLI workflow
-- Fictional demo dataset for public GitHub demonstration
+Live Application: https://kynguyen-ledger-automation.streamlit.app/
 
-### Future Demo
+### Local Usage
+Streamlit Application
+CLI Workflow
+Sample Demo Dataset
 
-- Streamlit Cloud deployment
-- Demo video walkthrough
-- Portfolio case-study page
+### Planned Enhancements
+Demo Video Walkthrough
+Architecture Diagram
+Portfolio Case Study
 
 ---
 
@@ -308,12 +334,28 @@ accounting-ledger-automation/
 |   |-- sample_vendor_master.xlsx
 |   `-- sample_payroll_master.xlsx
 |
+|-- Screenshots/
+|
 |-- archive/
 |   `-- legacy/
 |
 |-- raw/
 `-- output/
 ```
+
+---
+
+## Portfolio Highlights
+
+This project demonstrates:
+
+- Python automation
+- Data cleaning and transformation
+- Workflow design
+- Human-in-the-loop approval systems
+- Streamlit application development
+- Accounting process improvement
+- Config-driven architecture
 
 ---
 
