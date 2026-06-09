@@ -1,8 +1,51 @@
-# Accounting Ledger Automation Pipeline
+<div align="center">
 
-![Python](https://img.shields.io/badge/Python-3.11+-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red)
-![Status](https://img.shields.io/badge/Status-Prototype%20v2.0-green)
+# ACCOUNTING LEDGER AUTOMATION PIPELINE
+
+### Transforming Raw Accounting Ledgers into Audit-Ready Workbooks
+
+<p align="center">
+  <strong>Python • Data Automation • Accounting Workflow Design • Streamlit</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/Streamlit-Deployed-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">
+  <img src="https://img.shields.io/badge/Status-Prototype%20v2.0-success?style=for-the-badge">
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge">
+</p>
+
+<p align="center">
+  <a href="https://kynguyen-ledger-automation.streamlit.app/">
+    <img src="https://img.shields.io/badge/Live%20Demo-Open%20App-brightgreen?style=for-the-badge">
+  </a>
+</p>
+
+</div>
+
+---
+
+## Table of Contents
+
+- [Live Demo](#live-demo)
+- [Why I Built This Project](#why-i-built-this-project)
+- [Project Overview](#project-overview)
+- [Business Understanding](#business-understanding)
+- [Data Understanding](#data-understanding)
+- [Solution Architecture](#solution-architecture)
+- [Key Features](#key-features)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Approach](#approach)
+- [Results](#results)
+- [Screenshots](#screenshots)
+- [Project Structure](#project-structure)
+- [Portfolio Highlights](#portfolio-highlights)
+- [Status](#status)
+- [Data Privacy](#data-privacy)
+- [Credits](#credits)
+
+---
 
 ## Live Demo
 
@@ -171,12 +214,16 @@ Generated outputs include reconciliation summaries, run logs, match statuses, ap
 
 ## Technologies
 
-- Python
-- Pandas
-- OpenPyXL
-- RapidFuzz
-- Streamlit
-- YAML configurations
+<p>
+
+<img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
+<img src="https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white">
+<img src="https://img.shields.io/badge/OpenPyXL-217346">
+<img src="https://img.shields.io/badge/RapidFuzz-009688">
+<img src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white">
+<img src="https://img.shields.io/badge/YAML-CB171E">
+
+</p>
 
 ---
 
@@ -254,24 +301,19 @@ No artificial performance statistics are claimed. Results are based on implement
 
 ## Screenshots
 
-### Streamlit Home
+### Home
 
-![Streamlit Home](Screenshots/streamlit-home.jpg)
+![](Screenshots/streamlit-home.jpg)
 
-### Formatted Ledger
+### Workflow Screens
 
-![Formatted Ledger](Screenshots/formatted-ledger.png)
+| Formatted Ledger | Vendor Review |
+|---|---|
+| ![](Screenshots/formatted-ledger.png) | ![](Screenshots/vendor-match-review.png) |
 
-### Vendor Match Review
-
-![Vendor Match Review](Screenshots/vendor-match-review.png)
-
-### Employee Extraction Review
-
-![Employee Extraction Review](Screenshots/employee-extraction-review.png)
-
-### Final Workbook
-![Final Workbook](Screenshots/final-workbook.png)
+| Employee Review | Final Workbook |
+|---|---|
+| ![](Screenshots/employee-extraction-review.png) | ![](Screenshots/final-workbook.png) |
 
 ---
 
@@ -362,28 +404,17 @@ This project demonstrates:
 
 ## Status
 
-Current Status: **Prototype Version 2.0**
-
-### Completed
-
-- Config-driven architecture
-- Streamlit UI
-- CLI workflow
-- Ledger flattening
-- Vendor Review Workflow
-- Employee Review Workflow
-- Loan-out corporation support
-- Approved mapping workflow
-- Reconciliation and audit support
-
-### Planned
-
-- Alias memory
-- OCR invoice matching
-- Audit dashboard
-- Multi-company support
-- Approval history database
-- Deployment-ready demo environment
+| Component | Status |
+|------------|---------|
+| Streamlit UI | ✅ |
+| Ledger Flattening | ✅ |
+| Vendor Matching | ✅ |
+| Employee Review | ✅ |
+| Loan-Out Support | ✅ |
+| Audit Controls | ✅ |
+| Multi-company Support | 🔄 Planned |
+| OCR Invoice Matching | 🔄 Planned |
+| Audit Dashboard | 🔄 Planned |
 
 ---
 
@@ -438,3 +469,17 @@ Automate repetitive work.
 Keep humans in control.
 
 Prioritize auditability over blind automation.
+
+---
+
+<div align="center">
+
+### ⭐ If you find this project interesting, consider giving it a star.
+
+Built with Python and a passion for workflow automation.
+
+**Nguyen Du My Ky**
+
+Business Information Systems Student
+
+</div>
