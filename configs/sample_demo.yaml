@@ -1,0 +1,180 @@
+# GitHub demo config only.
+# All sample_data files are fake and must not be replaced with real client data.
+
+client: "Sample Demo Studio"
+company: "Sample Demo Studio"
+
+paths:
+  raw_ledger: "sample_data/sample_raw_ledger.xlsx"
+  vendor_master: "sample_data/sample_vendor_master.xlsx"
+  formatted_ledger: "output/sample_demo/sample_demo - Formatted Ledger.xlsx"
+  vendor_match_review: "output/sample_demo/sample_demo - Vendor Match Review.xlsx"
+  final_enriched_workbook: "output/sample_demo/sample_demo - Final Enriched Workbook.xlsx"
+
+input_mode:
+  allow_pre_flattened: true
+
+formatted_ledger_validation:
+  required_columns:
+    - "Vendor Name"
+    - "Description"
+    - "Amount"
+    - "Trans Date"
+  recommended_columns:
+    - "Account"
+    - "Account Name"
+    - "Vendor ID"
+    - "Currency"
+    - "USD"
+    - "Amt"
+
+employee_review:
+  output_path: "output/sample_demo/sample_demo - Employee Extraction Review.xlsx"
+
+payroll_master:
+  enabled: true
+  path: "sample_data/sample_payroll_master.xlsx"
+  sheet_name: 0
+
+  columns:
+    union_name: "Union Name"
+    sin: "SIN"
+    last_name: "Last Name"
+    first_name: "First Name"
+    position_name: "Position Name"
+    federal_id: "Federal ID"
+    loan_out_corp: "Loan Out Corp"
+    address: "Address"
+    city: "City"
+    province: "Province"
+    country: "Country"
+    zip_code: "Zip Code"
+    gst_number: "G/HST Number"
+
+  tax_logic:
+    no_loanout_tax_id_column: "SIN"
+    loanout_tax_id_column: "G/HST Number"
+    use_payroll_address_for_loanout: true
+
+ledger:
+  sheet_name: 0
+
+  columns:
+    trans_date: "Trans Date"
+    vendor_id: "Account"
+    vendor_name: "Name"
+    src: "Src"
+    trans_ref: "Trans Ref"
+    description: "Description"
+    our_reference: "Our Reference"
+    currency: "Currency"
+    usd: "USD"
+    cad: " Amt"
+    amount: " Amt"
+    ep: "Ep"
+
+  account_header:
+    marker_column: "Trans Date"
+    marker_value: "Expense"
+    account_id_column: "Account"
+    account_name_column: "Name"
+    account_id_pattern: '^[A-Z]\d{2}-\d{4}$'
+
+  additional_description:
+    description_column: "Account"
+    required_blank_columns: ["Trans Date"]
+    exclude_keywords: ["total", "subtotal"]
+
+  total_keywords: ["total", "subtotal"]
+
+vendor_master:
+  sheet_name: 0
+
+vendor_master_mapping:
+  vendor_id: "Vendor"
+  vendor_name: "Vendor Name"
+  tax_id: "Tax ID"
+  currency: "Currency"
+  address: "Address"
+  city: "City"
+  province: "Province"
+  country: "Country"
+  zip_code: "Zip Code"
+  loan_out_corp: "Loan out corp"
+  loan_out_corp_2: "Loan out corp 2"
+
+matching:
+  thresholds:
+    auto_match: 95
+    review: 85
+    low_confidence: 0
+
+  enrich_statuses: ["AUTO MATCH"]
+
+loanout_mapping:
+  enabled: true
+  corp_name_column: "Vendor Name"
+  alias_columns:
+    - "Loan out corp"
+    - "Loan out corp 2"
+  alias_prefixes:
+    - "FSO"
+    - "F/S/O"
+    - "ITF"
+    - "I/T/F"
+  fuzzy_threshold: 92
+  strict_initial_match: true
+
+employee_matching:
+  enabled: true
+  source_priority:
+    - payroll_master
+    - loanout_alias
+    - vendor_name
+    - ledger_context
+    - manual_review
+  vendor_name_column: "Vendor Name"
+  fuzzy_threshold: 92
+  strict_initial_match: true
+  allow_direct_vendor_name_match: true
+  direct_vendor_match_enabled: true
+  ledger_context_enabled: true
+
+employee_context_matching:
+  enabled: true
+  search_columns:
+    - "Description"
+    - "Additional Description"
+  candidate_vendor_column: "Vendor Name"
+  exclude_payroll_vendors: true
+  fuzzy_threshold: 88
+  max_candidates: 3
+
+payroll_vendors:
+  - "DEMO PAYROLL SERVICE INC."
+
+output:
+  final_columns:
+    - "Account"
+    - "Account Name"
+    - "Trans Date"
+    - "Src"
+    - "Trans Ref"
+    - "Vendor ID"
+    - "Vendor Name"
+    - "Description"
+    - "Additional Description"
+    - "Loan out corp"
+    - "Employee"
+    - "Tax ID"
+    - "Address"
+    - "City"
+    - "Province"
+    - "Country"
+    - "Zip Code"
+    - "Our Reference"
+    - "Currency"
+    - "USD"
+    - "Amt"
+    - "Ep"
+    - "Amount"

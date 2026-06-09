@@ -1,0 +1,214 @@
+# VICE company-level config.
+# VICE dùng một config chung vì các project có format ledger giống nhau.
+# Vendor Master và Payroll Master là master data cấp công ty, dùng chung cho nhiều project.
+# Không cần tạo config mới cho từng project nếu ledger format vẫn giống VICE.
+
+client: "VICE"
+company: "VICE"
+
+paths:
+  raw_ledger: "raw/VICE_Project_GL.xlsx"
+  vendor_master: "raw/VICE_Vendor_Master.xlsx"
+  formatted_ledger: "output/{project_name}/{project_name} - Formatted Ledger.xlsx"
+  vendor_match_review: "output/{project_name}/{project_name} - Vendor Match Review.xlsx"
+  final_enriched_workbook: "output/{project_name}/{project_name} - Final Enriched Workbook.xlsx"
+
+input_mode:
+  allow_pre_flattened: true
+
+formatted_ledger_validation:
+  required_columns:
+    - "Vendor Name"
+    - "Description"
+    - "Amount"
+    - "Trans Date"
+  recommended_columns:
+    - "Account"
+    - "Account Name"
+    - "Vendor ID"
+    - "Currency"
+    - "USD"
+    - "Amt"
+
+employee_review:
+  output_path: "output/{project_name}/{project_name} - Employee Extraction Review.xlsx"
+
+payroll_master:
+  enabled: true
+  path: "raw/VICE_Payroll_Master.xlsx"
+  sheet_name: 0
+
+  columns:
+    union_name: "Union Name"
+    sin: "SIN"
+    last_name: "Last Name"
+    first_name: "First Name"
+    position_name: "Position Name"
+    federal_id: "Federal ID"
+    loan_out_corp: "Loan Out Corp"
+    address: "Address"
+    city: "City"
+    province: "Province"
+    country: "Country"
+    zip_code: "Zip Code"
+    gst_number: "G/HST Number"
+
+  tax_logic:
+    # Nếu employee không có Loan Out Corp thì dùng SIN làm Tax ID.
+    no_loanout_tax_id_column: "SIN"
+    # Nếu employee có Loan Out Corp thì dùng G/HST Number làm Tax ID.
+    loanout_tax_id_column: "G/HST Number"
+    use_payroll_address_for_loanout: true
+
+ledger:
+  sheet_name: 0
+
+  columns:
+    trans_date: "Trans Date"
+    vendor_id: "Account"
+    vendor_name: "Name"
+    src: "Src"
+    trans_ref: "Trans Ref"
+    description: "Description"
+    our_reference: "Our Reference"
+    currency: "Currency"
+    usd: "USD"
+    cad: " Amt"
+    amount: " Amt"
+    ep: "Ep"
+
+  account_header:
+    marker_column: "Trans Date"
+    marker_value: "Expense"
+    account_id_column: "Account"
+    account_name_column: "Name"
+    account_id_pattern: '^[A-Z]\d{2}-\d{4}$'
+
+  additional_description:
+    description_column: "Account"
+    required_blank_columns: ["Trans Date"]
+    exclude_keywords: ["total", "subtotal"]
+
+  total_keywords: ["total", "subtotal"]
+
+vendor_master:
+  sheet_name: 0
+
+vendor_master_mapping:
+  vendor_id: "Vendor"
+  vendor_name: "Vendor Name"
+  tax_id: "Tax ID"
+  currency: "Currency"
+  address: "Address"
+  city: "City"
+  province: "Province"
+  country: "Country"
+  zip_code: "Zip Code"
+  loan_out_corp: "Loan out corp"
+  loan_out_corp_2: "Loan out corp 2"
+
+master_validation:
+  vendor_master_required_columns:
+    - "Vendor"
+    - "Vendor Name"
+    - "Tax ID"
+    - "Currency"
+    - "Address"
+    - "City"
+    - "Province"
+    - "Country"
+    - "Zip Code"
+    - "Loan out corp"
+    - "Loan out corp 2"
+  vendor_master_optional_columns: []
+  payroll_master_required_columns:
+    - "SIN"
+    - "Last Name"
+    - "First Name"
+    - "Loan Out Corp"
+    - "Address"
+    - "City"
+    - "Province"
+    - "Country"
+    - "Zip Code"
+    - "G/HST Number"
+  payroll_master_optional_columns:
+    - "Union Name"
+    - "Position Name"
+    - "Federal ID"
+
+matching:
+  thresholds:
+    auto_match: 95
+    review: 85
+    low_confidence: 0
+
+  enrich_statuses: ["AUTO MATCH"]
+
+loanout_mapping:
+  enabled: true
+  corp_name_column: "Vendor Name"
+  alias_columns:
+    - "Loan out corp"
+    - "Loan out corp 2"
+  alias_prefixes:
+    - "FSO"
+    - "F/S/O"
+    - "ITF"
+    - "I/T/F"
+  fuzzy_threshold: 92
+  strict_initial_match: true
+
+employee_matching:
+  enabled: true
+  source_priority:
+    - payroll_master
+    - loanout_alias
+    - vendor_name
+    - ledger_context
+    - manual_review
+  vendor_name_column: "Vendor Name"
+  fuzzy_threshold: 92
+  strict_initial_match: true
+  allow_direct_vendor_name_match: true
+  direct_vendor_match_enabled: true
+  ledger_context_enabled: true
+
+employee_context_matching:
+  enabled: true
+  search_columns:
+    - "Description"
+    - "Additional Description"
+  candidate_vendor_column: "Vendor Name"
+  exclude_payroll_vendors: true
+  fuzzy_threshold: 88
+  max_candidates: 3
+
+payroll_vendors:
+  - "GREENSLATE CANADA INC."
+
+output:
+  final_columns:
+    - "Account"
+    - "Account Name"
+    - "Trans Date"
+    - "Src"
+    - "Trans Ref"
+    - "Vendor ID"
+    - "Vendor Name"
+    - "Description"
+    - "Additional Description"
+    - "Loan out corp"
+    - "Employee"
+    - "Tax ID"
+    - "Address"
+    - "City"
+    - "Province"
+    - "Country"
+    - "Zip Code"
+    - "Our Reference"
+    - "Currency"
+    - "USD"
+    - "Amt"
+    - "Ep"
+    - "Amount"

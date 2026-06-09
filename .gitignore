@@ -1,0 +1,59 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Local editor and IDE settings
+.vscode/
+.idea/
+
+# Secrets and local environment files
+.env
+.env.*
+
+# Confidential accounting data and generated outputs
+raw/
+output/
+logs/
+*.log
+
+# Streamlit local settings/secrets
+.streamlit/
+
+# Excel/CSV files may contain real accounting data.
+# Keep sample_data exceptions below for fake demo files only.
+*.xlsx
+*.xls
+*.csv
+~$*.xlsx
+~$*.xls
+
+# Safe fake demo data for GitHub portfolio use
+!sample_data/
+!sample_data/*.xlsx
+!sample_data/*.xls
+!sample_data/*.csv
+
+# Archived legacy configs may contain old client-style names or paths.
+archive/legacy/configs/
+archive/legacy/configs/**
+
+# Public project assets and documentation
+!configs/
+!configs/*.yaml
+!configs/*.yml
+!configs/*.json
+!docs/
+!docs/**
+!screenshots/
+!screenshots/**
+!README.md
+!requirements.txt
+
+# OS files
+.DS_Store
+Thumbs.db
