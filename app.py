@@ -37,7 +37,12 @@ def main():
     selected_config = st.selectbox(
         "Company config",
         config_files,
+        index=_default_config_index(config_files),
         format_func=_config_label,
+    )
+    st.info(
+        "For the public demo, use sample_demo.yaml or upload your own files. "
+        "Private raw/vendor/payroll files are not included in this repository."
     )
     config_preview = load_config(selected_config)
     if str(config_preview.get("company") or config_preview.get("client", "")).upper() == "VICE":
@@ -377,6 +382,13 @@ def _active_config_files():
             path for path in config_dir.glob(pattern) if path.is_file()
         )
     return sorted(config_files)
+
+
+def _default_config_index(config_files):
+    for index, path in enumerate(config_files):
+        if path.name == "sample_demo.yaml":
+            return index
+    return 0
 
 
 def _config_label(path):
