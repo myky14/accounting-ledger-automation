@@ -288,6 +288,7 @@ Approved Mapping
 Final Workbook Generation
 
 Live Application: https://kynguyen-ledger-automation.streamlit.app/
+> Note: The public demo uses fictional sample data only.
 
 ### Local Usage
 Streamlit Application
